@@ -1,4 +1,3 @@
-import React from 'react';
 import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 
@@ -467,6 +466,6 @@ export const Background = () => {
                 "themes": [],
                 "zLayers": 100
             }}>
-\        </Particles>
+        </Particles>
     )
 }
