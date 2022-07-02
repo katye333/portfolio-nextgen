@@ -1,11 +1,23 @@
 import './App.css';
+import SimpleImageSlider from "react-simple-image-slider";
 
 const App = () => {
+    const images = [
+        {url: require('./images/1.jpg')},
+        {url: require('./images/2.jpg')},
+        {url: require('./images/3.jpg')}
+    ];
+
     return (
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flex: 1, marginTop: 80}}>
             <div style={{display: 'flex', flex: 0.5, flexDirection: 'column', paddingTop: 75}}>
                 <div className='image-container'>
-                    <h2>[ Insert Image Here ]</h2>
+                    <SimpleImageSlider 
+                        width={550} 
+                        height={550} 
+                        images={images} 
+                        showBullets={true} 
+                        showNavs={true} />
                 </div>
             </div>
             <div style={{display: 'flex', flex: 0.5, flexDirection: 'column', zIndex: 100}}>
