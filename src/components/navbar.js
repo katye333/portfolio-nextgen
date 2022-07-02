@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Background } from '../background';
+import { Background } from './background';
 import '../App.css'
+import Footer from './footer';
 
 export const Frame = () => {
     return (
@@ -21,6 +22,7 @@ export const Frame = () => {
                     <Background />
                 </div>
                 <Outlet />
+                <Footer />
             </div>
         </React.Fragment>
     )
