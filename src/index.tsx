@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './index.css';
-import { Frame } from './components/frame';
+import { Frame } from './components/navbar';
 import App from './App';
-import Resume from './resume';
-import Projects from './projects';
-import Contact from './contact';
+import Resume from './screens/resume';
+import Projects from './screens/projects';
+import Contact from './screens/contact';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
