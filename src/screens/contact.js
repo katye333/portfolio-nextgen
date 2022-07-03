@@ -7,12 +7,20 @@ import { Button } from 'primereact/button';
 import '../App.css';
 
 const Contact = () => {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [phone, setPhone] = React.useState('');
-    const [message, setMessage] = React.useState('');
+    const [name, setName] = React.useState(null);
+    const [email, setEmail] = React.useState(null);
+    const [phone, setPhone] = React.useState(null);
+    const [message, setMessage] = React.useState(null);
+    const [loading, setLoading] = React.useState(false);
 
+    const sendEmail = (e) => {
+        e.preventDefault();
+        setLoading(true);
 
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+    }
     return (
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flex: 1, marginTop: 50, zIndex: 1000}}>
             <div className='contact-container'>
@@ -37,11 +45,16 @@ const Contact = () => {
                         <label htmlFor="contact_phone">Phone Number</label>
                     </span>
                     <span className="p-float-label" style={{marginTop: 25, display: 'flex', flexDirection: 'row', marginBottom: 55}}>
-                        <InputTextarea id="contact_message" className='p-inputtextarea' rows={5} cols={50} value={name} onChange={(e) => setName(e.target.value)} />
+                        <InputTextarea id="contact_message" className='p-inputtextarea' rows={5} cols={50} value={message} onChange={(e) => setMessage(e.target.value)} />
                         <label htmlFor="contact_message">Message</label>
                     </span>
 
-                    <Button label='Send Message' className='p-button-raised p-button-rounded p-button-block p-button-gradient' icon='fas fa-paper-plane' />
+                    <Button 
+                        label='Send Message' 
+                        className='p-button-raised p-button-rounded p-button-block p-button-gradient' 
+                        icon='fas fa-paper-plane' 
+                        loading={loading}
+                        onClick={sendEmail} />
                 </form>                
             </div>
         </div>
