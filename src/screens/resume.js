@@ -1,14 +1,31 @@
-import { Frame } from "../components/navbar";
+import React from "react";
+
 import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';
 import { Button } from "primereact/button";
+import { Chart } from 'primereact/chart';
 
 import { ReactComponent as LogoEFX } from '../images/logo-efx.svg';
 import { ReactComponent as LogoCHHJ } from '../images/logo-chhj.svg';
 import { ReactComponent as LogoMJT } from '../images/logo-mjobtime.svg';
 
+import mapEFX from '../images/map-efx.png';
+import mapCHHJ from '../images/map-chhj.png';
+import mapMJT from '../images/map-mjobtime.png';
+
 const Resume = () => {
-    const jobInfo = [
+    const [showBack, setShowBack] = React.useState(false);
+    const [options] = React.useState({
+        plugins: {
+            legends: {
+                labels: {
+                    color: '#000000'
+                }
+            }
+        }
+    });
+   
+    const [jobInfo] = React.useState([
         {
             logo: <LogoEFX width={'90%'} height={250} />,
             companyName: 'EFX Financial Services',
@@ -17,6 +34,21 @@ const Resume = () => {
             endDate: 'Current Employee',
             city: 'Largo',
             state: 'FL',
+            map: mapEFX,
+            chartData: {
+                labels: ['JavaScript', 'HTML5', 'CSS3', 'C#/Asp.Net', 'SQL'],
+                datasets: [
+                    {
+                        data: [40, 25, 10, 15, 10],
+                        backgroundColor: [
+                            '#eeaf61', '#fb9062', '#ee5d6c', '#ce4993', '#6a0d83'
+                        ],
+                        hoverBackgroundColors: [
+                            '#eeaf61', '#fb9062', '#ee5d6c', '#ce4993', '#6a0d83'
+                        ]
+                    }
+                ]
+            },
             responsibilities: [
                 {
                     id: 0,
@@ -44,6 +76,21 @@ const Resume = () => {
             endDate: 'April 2020',
             city: 'Tampa',
             state: 'FL',
+            map: mapCHHJ,
+            chartData: {
+                labels: ['React Native', 'iOS', 'Android'],
+                datasets: [
+                    {
+                        data: [60, 20, 20],
+                        backgroundColor: [
+                            '#fb9062', '#ee5d6c', '#ce4993'
+                        ],
+                        hoverBackgroundColors: [
+                            '#fb9062', '#ee5d6c', '#ce4993'
+                        ]
+                    }
+                ]
+            },
             responsibilities: [
                 {
                     id: 0,
@@ -75,6 +122,21 @@ const Resume = () => {
             endDate: 'December 2017',
             city: 'Beaumont',
             state: 'TX',
+            map: mapMJT,
+            chartData: {
+                labels: ['React Native', 'iOS', 'Android', 'C#/Asp.Net', 'SQL'],
+                datasets: [
+                    {
+                        data: [40, 5, 5, 45, 5],
+                        backgroundColor: [
+                            '#eeaf61', '#fb9062', '#ee5d6c', '#ce4993', '#6a0d83'
+                        ],
+                        hoverBackgroundColors: [
+                            '#eeaf61', '#fb9062', '#ee5d6c', '#ce4993', '#6a0d83'
+                        ]
+                    }
+                ]
+            },
             responsibilities: [
                 {
                     id: 0,
@@ -94,25 +156,65 @@ const Resume = () => {
                 }
             ]
         }
-    ]
+    ]);
 
     const itemTemplate = (job) => {
-        console.log("JOB LOGO URL: ", job.logo)
-        const header = job.logo;
-        const footer = <span>
-            <Button className='p-button p-button-gradient' label='Read More' />
-        </span>
-        return (
-            <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} title={job.companyName} subTitle={job.jobTitle} header={header} footer={footer}>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <p>{job.startDate} - {job.endDate}</p> 
-                    <p style={{marginTop: -10}}>{job.city}, {job.state}</p>
-                </div>
-                <div style={{display: 'flex', flexDirection: 'column', borderColor: '#000', borderWidth: 2}}>
-                    <p>Blahblahblah</p>
-                </div>
-            </Card>
-        );
+        console.log(job.chartData)
+        if (showBack === false) {
+            const header = job.logo;
+
+            return (
+                <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} header={header}>
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                        <div>
+                            <div className="p-card-title">EFX Financial Services</div>
+                            <div className="p-card-subtitle">Mobile Application/Full Stack Developer</div>
+                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                                <p>{job.startDate} - {job.endDate}</p> 
+                                <p style={{marginTop: -10}}>{job.city}, {job.state}</p>
+                            </div>
+                        </div>
+                        <span>
+                            <Button className='p-button p-button-gradient' label='Read More' onClick={() => setShowBack(true)} />
+                        </span>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column', borderColor: '#000', borderWidth: 2}}>
+                        <img src={job.map} width={300} height={300} />
+                    </div>
+                </Card>
+            );
+        }
+        else {
+            const header = <div>
+                <div className="p-card-title">EFX Financial Services</div>
+                <div className="p-card-subtitle">Mobile Application/Full Stack Developer</div>
+            </div>
+
+            return (
+                <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} header={header}>
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                        <div>
+                            {
+                                job.responsibilities.map((item, index) => {
+                                    let key = index;
+                                    return (
+                                        <p key={key}>{item.text}</p>
+                                    )
+                                })
+                            }
+                        </div>
+                        <span>
+                            <Button className='p-button p-button-gradient' label='Back' onClick={() => setShowBack(false)} />
+                        </span>
+                    </div>
+                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                        <div>
+                            <Chart type="doughnut" data={job.chartData} options={options} />
+                        </div>
+                    </div>
+                </Card>
+            )
+        }
     }
 
     return (
@@ -121,6 +223,7 @@ const Resume = () => {
                 <Carousel 
                     containerClassName='carouselContainer'
                     value={jobInfo} 
+                    circular={true}
                     itemTemplate={itemTemplate} 
                     numVisible={1} 
                     numScroll={1}></Carousel>

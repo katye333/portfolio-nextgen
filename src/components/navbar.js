@@ -19,9 +19,10 @@ export const Frame = () => {
                     </div>
                 </div>
                 <div className='content'>
-                    <Background />
+                    
                 </div>
                 <Outlet />
+
                 <Footer />
             </div>
         </React.Fragment>

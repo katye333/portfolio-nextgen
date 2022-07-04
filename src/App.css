@@ -1,3 +1,8 @@
+body {
+    margin-bottom: 300px;
+    overflow-y: scroll;
+}
+
 .App {
     display: flex;
     flex: 1;
@@ -130,6 +135,7 @@ p {
     background: linear-gradient(90deg, #2b2b2b, #2c2c2c, #191919, #090909, #000000);
     position: absolute;
     bottom: 0;
+    margin-bottom: -300px;
     width: 100%;
     z-index: 10001;
 }
@@ -272,4 +278,11 @@ form {
 .p-carousel-items-content {
     height: auto;
     width: fit-content;
+}
+
+.p-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
 }
