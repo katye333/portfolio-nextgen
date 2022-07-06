@@ -4,6 +4,7 @@ import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';
 import { Button } from "primereact/button";
 import { Chart } from 'primereact/chart';
+import ReactCardFlip from "../components/react-card-flip";
 
 import { ReactComponent as LogoEFX } from '../images/logo-efx.svg';
 import { ReactComponent as LogoCHHJ } from '../images/logo-chhj.svg';
@@ -159,16 +160,15 @@ const Resume = () => {
     ]);
 
     const itemTemplate = (job) => {
-        console.log(job.chartData)
+
         if (showBack === false) {
             const header = job.logo;
-
             return (
                 <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} header={header}>
                     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <div>
-                            <div className="p-card-title">EFX Financial Services</div>
-                            <div className="p-card-subtitle">Mobile Application/Full Stack Developer</div>
+                            <div className="p-card-title">{job.companyName}</div>
+                            <div className="p-card-subtitle">{job.jobTitle}</div>
                             <div style={{display: 'flex', flexDirection: 'column'}}>
                                 <p>{job.startDate} - {job.endDate}</p> 
                                 <p style={{marginTop: -10}}>{job.city}, {job.state}</p>
@@ -186,8 +186,8 @@ const Resume = () => {
         }
         else {
             const header = <div>
-                <div className="p-card-title">EFX Financial Services</div>
-                <div className="p-card-subtitle">Mobile Application/Full Stack Developer</div>
+                <div className="p-card-title">{job.companyName}</div>
+                <div className="p-card-subtitle">{job.jobTitle}</div>
             </div>
 
             return (

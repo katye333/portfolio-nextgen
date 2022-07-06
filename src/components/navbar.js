@@ -13,7 +13,7 @@ export const Frame = () => {
                         <Link to='/'><h3>HOME</h3></Link>
                     </div>
                     <div className='nav-item-right'>
-                        <Link to='/resume'><h3>RESUME</h3></Link>
+                        <Link to='/resume'><h3>EXPERIENCE</h3></Link>
                         <Link to='/projects'><h3>PROJECTS</h3></Link>
                         <Link to='/contact'><h3>CONTACT</h3></Link>
                     </div>

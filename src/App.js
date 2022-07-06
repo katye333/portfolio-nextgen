@@ -24,29 +24,30 @@ const App = () => {
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flex: 1, marginTop: 50}}>
             <div style={{display: 'flex', flex: 0.5, flexDirection: 'column', paddingTop: 75}}>
                 <div className='image-container'>
+                    
                 </div>
             </div>
             <div style={{display: 'flex', flex: 0.5, flexDirection: 'column', zIndex: 100}}>
                 <div className='info-container'>
-                    <h4 style={{marginBottom: -15}}>HELLO! My name is </h4>
-                    <h1>Kaitlin Stevens</h1>
+                    <h4 style={{marginBottom: -15, color: '#000'}}>HELLO! My name is </h4>
+                    <h1 style={{color: '#000'}}>Kaitlin Stevens</h1>
                     <hr />
 
                     <div className='inner-scroll-info-container' style={trivia ? {overflowY: 'scroll'} : {overflowY: 'hidden'}}>
-                        <h4>
+                        <h4 style={{color: '#000'}}>
                             I am currently working in Florida as a mobile app developer.
                         </h4>
-                        <h4>
+                        <h4 style={{color: '#000'}}>
                             I usually work with React Native and Typescript with 
                             some kotlin  and swift thrown in for good measure, though I 
                             have been known to throw together some c# when needed. 
                         </h4>
 
-                        <h4>I am full of random bits of trivia. Click the button below to see.</h4>
+                        <h4 style={{color: '#000'}}>I am full of random bits of trivia. Click the button below to see.</h4>
 
                         {
                             trivia !== null &&
-                            <h5>{trivia}</h5>
+                            <h5 style={{color: '#000'}}>{trivia}</h5>
                         }
                     </div>
                     <Button 
@@ -55,9 +56,9 @@ const App = () => {
                         onClick={generateTriviaFact} />
                     
                 </div>
-                <div style={{display: 'flex', flexDirection: 'row', marginTop: 30, justifyContent: 'space-evenly'}}>
+                <div style={{display: 'flex', flexDirection: 'row', marginTop: 60, justifyContent: 'space-evenly'}}>
                     <a className='circle-button' href='/resume'>
-                        <h2>RESUME</h2>
+                        <h2>WORK EXPERIENCE</h2>
                     </a>
                     <a className='circle-button' href='/projects'>
                         <h2>PROJECTS</h2>
