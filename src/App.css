@@ -116,6 +116,8 @@ h1, h2, h3, h4 {
     margin-bottom: 10px;
 }
 
+
+
 .inner-scroll-info-container {
     max-height: 200px;
     overflow-x: hidden;
@@ -175,12 +177,6 @@ p {
     .nav-item-right {
         display: none;
     }
-}
-
-.contact-container {
-    width: 400px;
-    height: 500px;
-    z-index: 2000;
 }
 
 
@@ -248,13 +244,13 @@ p {
 }
 
 .contact-container {
-    flex-direction: column;
-    align-self: center;
-    height: 650px; 
-    z-index: 100;
+    height: fit-content; 
     padding: 20px;
     width: 50%;
     box-shadow: rgba(195,55,100,0.25) 0px 5px 15px, rgba(29,38,113, 0.3) 0px 5px 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5%;
 }
 
 label {
@@ -355,25 +351,42 @@ button:hover {
 }
 
 .projectContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
     box-shadow: rgba(195,55,100,0.25) 0px 5px 15px, rgba(29,38,113, 0.3) 0px 5px 15px;
-    padding: 40px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    height: fit-content;
+    width:85%;
 }
 
 .project-title {
+    text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: 600;
 }
 
-.project-subtitle, .project-links {
+.project-subtitle {
+    text-align: center;
     font-size: 16px;
 }
 
-.project-links p {
-    margin-bottom: -10px;
+.project-links {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.project-link {
+    margin-left: 10px;
+    text-decoration: none;
+    color:rgba(29,38,113, 1);
+}
+
+.project-link:visited, .project-link:hover, .project-link:active {
+    color:rgba(29,38,113, 1);
 }
 
 .project-paragraph {
