@@ -1,10 +1,9 @@
 import React from "react";
 
-import { Carousel } from 'primereact/carousel';
+import { Timeline } from 'primereact/timeline';
 import { Card } from 'primereact/card';
 import { Button } from "primereact/button";
 import { Chart } from 'primereact/chart';
-import ReactCardFlip from "../components/react-card-flip";
 
 import { ReactComponent as LogoEFX } from '../images/logo-efx.svg';
 import { ReactComponent as LogoCHHJ } from '../images/logo-chhj.svg';
@@ -16,6 +15,7 @@ import mapMJT from '../images/map-mjobtime.png';
 
 const Resume = () => {
     const [showBack, setShowBack] = React.useState(false);
+    
     const [options] = React.useState({
         plugins: {
             legends: {
@@ -28,7 +28,7 @@ const Resume = () => {
    
     const [jobInfo] = React.useState([
         {
-            logo: <LogoEFX width={'90%'} height={250} />,
+            logo: <LogoEFX width={300} height={200} />,
             companyName: 'EFX Financial Services',
             jobTitle: 'Mobile Application/Full Stack Developer',
             startDate: 'June 2020',
@@ -36,6 +36,7 @@ const Resume = () => {
             city: 'Largo',
             state: 'FL',
             map: mapEFX,
+            icon: 'fas fa-laptop-mobile',
             chartData: {
                 labels: ['JavaScript', 'HTML5', 'CSS3', 'C#/Asp.Net', 'SQL'],
                 datasets: [
@@ -70,7 +71,7 @@ const Resume = () => {
             ]
         },
         {
-            logo: <LogoCHHJ width={'fit-content'} height={250} />,
+            logo: <LogoCHHJ width={250} height={200} />,
             companyName: 'College Hunks Hauling Junk and Moving HQ',
             jobTitle: 'Mobile Application Developer',
             startDate: 'June 2018',
@@ -78,6 +79,7 @@ const Resume = () => {
             city: 'Tampa',
             state: 'FL',
             map: mapCHHJ,
+            icon: 'fas fa-mobile-screen',
             chartData: {
                 labels: ['React Native', 'iOS', 'Android'],
                 datasets: [
@@ -116,7 +118,7 @@ const Resume = () => {
             ]
         },
         {
-            logo: <LogoMJT width={'fit-content'} height={250} />,
+            logo: <LogoMJT width={200} height={175} />,
             companyName: 'mJobTime',
             jobTitle: 'Full Stack Developer',
             startDate: 'December 2013',
@@ -124,6 +126,7 @@ const Resume = () => {
             city: 'Beaumont',
             state: 'TX',
             map: mapMJT,
+            icon: 'fas fa-laptop-code',
             chartData: {
                 labels: ['React Native', 'iOS', 'Android', 'C#/Asp.Net', 'SQL'],
                 datasets: [
@@ -159,12 +162,12 @@ const Resume = () => {
         }
     ]);
 
-    const itemTemplate = (job) => {
+    const customizedCard = (job) => {
 
         if (showBack === false) {
             const header = job.logo;
             return (
-                <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} header={header}>
+                <Card style={{width: '100%', height: '85%'}} header={header}>
                     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <div>
                             <div className="p-card-title">{job.companyName}</div>
@@ -178,20 +181,20 @@ const Resume = () => {
                             <Button className='p-button p-button-gradient' label='Read More' onClick={() => setShowBack(true)} />
                         </span>
                     </div>
-                    <div style={{display: 'flex', flexDirection: 'column', borderColor: '#000', borderWidth: 2}}>
-                        <img src={job.map} width={300} height={300} />
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', borderColor: '#000', borderWidth: 2}}>
+                        <img src={job.map} width={200} height={200} />
                     </div>
                 </Card>
             );
         }
         else {
-            const header = <div>
+            const header = <div style={{marginTop: 10}}>
                 <div className="p-card-title">{job.companyName}</div>
                 <div className="p-card-subtitle">{job.jobTitle}</div>
             </div>
 
             return (
-                <Card style={{width: '100%', display: 'flex', flexDirection: 'column'}} header={header}>
+                <Card style={{width: '100%', height: 'fit-content'}} header={header}>
                     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <div>
                             {
@@ -217,17 +220,16 @@ const Resume = () => {
         }
     }
 
+    const getJobDates = (job) => {
+        return job.startDate + ' through ' + job.endDate;
+    }
+
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flex: 1, marginTop: 50, zIndex: 1000}}>
-            <div className='carousel-container'>
-                <Carousel 
-                    containerClassName='carouselContainer'
-                    value={jobInfo} 
-                    circular={true}
-                    itemTemplate={itemTemplate} 
-                    numVisible={1} 
-                    numScroll={1}></Carousel>
+        <div className="work-container">
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: '2%'}}>
+                <h1>Timeline of past jobs</h1>
             </div>
+            <Timeline value={jobInfo} align="alternate" className="customized-timeline" content={customizedCard} opposite={getJobDates} />
         </div>
     )
 }

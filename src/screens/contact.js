@@ -22,7 +22,7 @@ const Contact = () => {
         }, 2000);
     }
     return (
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flex: 1, marginTop: 50, zIndex: 1000}}>
+        <div className='contentContainer'>
             <div className='contact-container'>
                 <h1>Contact Me</h1>
                 <hr />
